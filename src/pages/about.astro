@@ -1,7 +1,5 @@
 ---
-import Footer from '../components/footer.astro';
-import Header from '../components/header.astro';
-import '../styles/global.css';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const pageTitle = "About Me";
 
@@ -17,38 +15,20 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 const happy = true;
 const finished = false;
 const goal = 3;
-
-const skillColor = "mediumslateblue";
-const fontWeight = "bold";
-const textCase = "uppercase";
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-        <style define:vars={{skillColor, fontWeight, textCase}}>
-            h1 {
-                color: purple;
-                font-size: 4 rem;
-            }
-            .skill {
-                color: var(--skillColor);
-                font-weight: var(--fontWeight);
-                text-transform: var(--textCase);
-                list-style-type: "\1F4BB";
-            }
-        </style>
-
-	</head>
-	<body>
-        <Header />
-
-		<h1>{pageTitle}</h1>
-        <h2>...and my new Astro site!</h2>
+<BaseLayout pageTitle = {pageTitle}>
+    <style is:global>
+        h1 {
+            color: purple;
+        }
+        .skill {
+            color: mediumslateblue;
+            font-weight: bold;
+            text-transform: uppercase;
+            list-style-type: "\1F4BB";
+        }
+    </style>
+    <h2>...and my new Astro site!</h2>
     
         <p>I am working through Astro's introductory tutorial. This is the 2<sup>nd</sup> page, and it's the 1<sup>st</sup> one I built myself!</p>
         <p>This site will update as I continue the tutorial, so check back to see my progress!</p>
@@ -73,9 +53,4 @@ const textCase = "uppercase";
 
         {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
 
-        <Footer />
-        <script>
-			import "../scripts/menu.js"
-		</script>
-    </body>
-</html>
+</BaseLayout>
