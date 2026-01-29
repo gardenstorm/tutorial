@@ -7,7 +7,33 @@ const {frontmatter} = Astro.props
     <p>Published on {frontmatter.pubDate.toString().slice(0,10)}</p>
     <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
 
+    <div class="tag">
+        {frontmatter.tags.map((tag: string) => (
+            <p class="tags">
+                <a href={`/tags/${tag}`}>{tag}</a>
+            </p>
+        ))}
+    </div>
+
     <slot />
 
     <p><em><b>Tags:</b> {frontmatter.tags.toString().split(",").join(", ")}</em></p>
 </Baselayout>
+
+<style>
+    a {color: #00539F;}
+    
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .tag {
+        margin: 0.25em;
+        border: dotted 1px #a1a1a1;
+        border-radius: .5em;
+        padding: .5em 1em;
+        font-size: 1.15em;
+        background-color: #f8fcfd;
+    }
+</style>
